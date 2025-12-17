@@ -1,3 +1,79 @@
+// ===== DATA STRUCTURE =====
+// Portfolio stored as an ARRAY (DS concept)
+let portfolio = JSON.parse(localStorage.getItem("portfolio")) || [];
+
+// ===== DOM ELEMENTS =====
+const totalInvestedEl = document.getElementById("totalInvested");
+const currentValueEl = document.getElementById("currentValue");
+const profitLossEl = document.getElementById("profitLoss");
+const plPercentEl = document.getElementById("plPercent");
+const riskScoreEl = document.getElementById("riskScore");
+const tableBody = document.getElementById("portfolioTable");
+
+// ===== ADD ASSET =====
+function addAsset() {
+  const symbol = document.getElementById("symbol").value.trim();
+  const qty = Number(document.getElementById("qty").value);
+  const buyPrice = Number(document.getElementById("buyPrice").value);
+  const risk = document.getElementById("riskCategory").value;
+
+  if (!symbol || qty <= 0 || buyPrice <= 0) {
+    alert("Enter valid asset details");
+    return;
+  }
+
+  const asset = {
+    symbol,
+    qty,
+    buyPrice,
+    currentPrice: buyPrice, // mock price
+    risk
+  };
+
+  portfolio.push(asset);
+  localStorage.setItem("portfolio", JSON.stringify(portfolio));
+
+  renderPortfolio();
+}
+function renderPortfolio() {
+  tableBody.innerHTML = "";
+
+  let totalInvested = 0;
+  let currentValue = 0;
+
+  portfolio.forEach(asset => {
+    const invested = asset.qty * asset.buyPrice;
+    const current = asset.qty * asset.currentPrice;
+
+    totalInvested += invested;
+    currentValue += current;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${asset.symbol}</td>
+      <td>${asset.qty}</td>
+      <td>₹${asset.buyPrice}</td>
+      <td>₹${asset.currentPrice}</td>
+      <td>₹${current}</td>
+      <td>₹${current - invested}</td>
+      <td>${asset.risk}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+
+  const profitLoss = currentValue - totalInvested;
+  const plPercent = totalInvested ? ((profitLoss / totalInvested) * 100).toFixed(2) : 0;
+
+  totalInvestedEl.innerText = `₹${totalInvested}`;
+  currentValueEl.innerText = `₹${currentValue}`;
+  profitLossEl.innerText = `₹${profitLoss}`;
+  plPercentEl.innerText = `${plPercent}%`;
+  riskScoreEl.innerText = `${portfolio.length} / 3`;
+}
+
+// Load data on refresh
+renderPortfolio();
+
 // ================== CONFIG ==================
 const FINNHUB_API_KEY = "d4ppd0pr01qjpnb0ph20d4ppd0pr01qjpnb0ph2g"; // optional live price key
 const PRICE_REFRESH_MS = 60_000; // live refresh every 60s
