@@ -1,0 +1,1721 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg: radial-gradient(circle at top, #111827 0, #020617 60%);
+  --sidebar: #020617;
+  --card: rgba(15, 23, 42, 0.98);
+  --border: rgba(148, 163, 184, 0.45);
+  --text: #e5edff;
+  --muted: #8ca0c4;
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.16);
+  --accent-glow: rgba(99, 102, 241, 0.45);
+  --radius-lg: 22px;
+  --radius-md: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* LAYOUT */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #020617, #020617 40%, #020617ee 100%);
+  border-right: 1px solid rgba(15, 23, 42, 0.9);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 10% 0%, #22c55e, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: #020617;
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+  transition: 0.25s;
+}
+
+.nav-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link:hover {
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--text);
+}
+
+.nav-link.active {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 10px 26px var(--accent-glow);
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 26px 34px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+}
+
+.header-left p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* SEARCH */
+.search-box {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.9);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+}
+
+/* SETTINGS CHIP */
+.settings-chip {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.settings-chip:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  box-shadow: 0 8px 18px var(--accent-glow);
+}
+
+/* THEME TOGGLE */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.switch {
+  position: relative;
+  width: 42px;
+  height: 22px;
+}
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: #4b5563;
+  transition: 0.3s;
+}
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+input:checked + .slider {
+  background: var(--accent);
+}
+input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* USER PILL */
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+.user-name {
+  font-size: 13px;
+}
+.user-role {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* LOADER */
+.loader {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* CARDS */
+.card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 16px 18px 16px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(18px);
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 17px;
+}
+.card-subtitle {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* FORM ROW */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.row.space-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* INPUTS & BUTTONS */
+input, select, button {
+  font-family: inherit;
+}
+
+input, select {
+  background: #020617;
+  border-radius: 12px;
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+button {
+  border-radius: 999px;
+  border: none;
+  padding: 9px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #4f46e5;
+  box-shadow: 0 10px 24px var(--accent-glow);
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: var(--text);
+}
+.secondary-btn:hover {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.stats-grid span {
+  background: #020617;
+  border-radius: var(--radius-md);
+  padding: 10px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.stats-grid b {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th, td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+  font-size: 12px;
+}
+th {
+  text-align: left;
+  color: var(--muted);
+}
+td:first-child {
+  color: #38bdf8;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* CARD VIEW */
+.cards-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.asset-card {
+  background: #020617;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+/* CHART BOX */
+.chart-box {
+  min-height: 280px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  background: radial-gradient(circle at top, #020617, #020617 55%, #020617);
+  padding: 8px;
+}
+
+.chart-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* SIMPLE LIST (for other pages) */
+.simple-list {
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.simple-list li + li { margin-top: 4px; }
+
+/* AUTH PAGES (login/register) */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.auth-card {
+  width: 360px;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 22px 20px 20px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+}
+
+.auth-card h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.auth-card p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-card button {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.auth-footer {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+.auth-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .sidebar {
+    width: 72px;
+  }
+  .logo-text {
+    display: none;
+  }
+  .nav-label {
+    display: none;
+  }
+  .main {
+    padding: 20px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .header-right {
+    align-self: stretch;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+/* === PIE CHART SIZE ADJUSTMENT === */
+#allocationChart {
+    max-width: 350px !important; /* reduce from full width */
+    height: 350px !important;
+    margin: 0 auto; /* keeps it centered */
+}
+
+/* Reduce card height slightly */
+.allocation-section {
+    min-height: 420px;
+}
+
+
+/* === MAKE LIVE CHART SECTION BIGGER === */
+.chart-box {
+    height: 480px !important; /* increase height */
+}
+
+/* If using iframe embed, scale it too */
+.chart-box iframe {
+    height: 100% !important;
+}
+.chart-section {
+    width: 100% !important;
+}
+/* FIX: Expand live candlestick chart to full available height */
+.chart-box, #chartContainer {
+    height: 700px !important; /* adjust number if you want taller */
+}
+
+/* Make chart iframe and canvas fill space fully */
+.chart-box iframe,
+#chartContainer iframe {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Optional — remove inner padding to make chart flush */
+.chart-box {
+    padding: 0 !important;
+}
+/* Delete button style — small + non intrusive */
+.delete-btn {
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 4px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 8px;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    background: #ff0000;
+}
+.delete-btn {
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 4px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 8px;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    background: #ff0000;
+}
+/* Fix for Allocation Card - reduce extra height */
+.allocation-card {
+  min-height: auto !important;
+  height: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px !important;
+}
+
+/* Center chart canvas */
+#allocationChart {
+  width: 260px !important;
+  height: 260px !important;
+  margin: auto;
+  display: block;
+}
+#allocationChart {
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0px 0px 12px #1e90ff55);
+}
+
+#allocationChart:hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0px 0px 18px #1e90ffdd);
+}
+
+.allocation-card {
+  min-height: auto !important;
+  height: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px !important;
+}
+/* Fix allocation card layout */
+.allocation-card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-height: 380px !important;
+  height: auto !important;
+  padding: 25px !important;
+  text-align: center;
+}
+
+/* Ensure chart sits centered */
+#allocationChart {
+  display: block;
+  margin: 0 auto !important;
+  width: 260px !important;
+  height: 260px !important;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Make legend centered and spaced nicely */
+.allocation-card .chartjs-legend {
+  text-align: center !important;
+  margin-bottom: 5px !important;
+}
+
+.chartjs-legend ul {
+  justify-content: center !important;
+  display: flex !important;
+  gap: 10px;
+}
+
+/* Optional: keep tooltip from shifting layout */
+.chartjs-tooltip {
+  pointer-events: none;
+}
+/* Center + improve chart layout */
+.allocation-card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+  padding: 25px;
+}
+
+/* Smooth hover animation */
+#allocationChart {
+  transition: transform 0.5s ease, filter 0.5s ease !important;
+}
+
+#allocationChart:hover {
+  transform: scale(1.05);
+}
+
+/* Tooltip clipping fix */
+.chartjs-tooltip {
+  pointer-events: none !important;
+  z-index: 9999;
+}
+/* === FINAL FIXES FOR PERFECT ALIGNED ALLOCATION CHART === */
+
+.allocation-card,
+section.card:has(#allocationChart) {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 32px !important;
+    gap: 12px;
+    min-height: 380px !important;
+}
+
+/* Center canvas perfectly */
+#allocationChart {
+    width: 260px !important;
+    height: 260px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.55));
+}
+
+/* Smooth hover glow */
+#allocationChart:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 22px rgba(99, 102, 241, 0.95));
+}
+
+/* Center legend and make spacing cleaner */
+.allocation-card .chartjs-legend,
+.chartjs-legend {
+    width: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 6px !important;
+}
+
+.chartjs-legend ul {
+    display: flex !important;
+    justify-content: center;
+    gap: 14px;
+    padding: 0;
+}
+
+/* Tooltip floating fix */
+.chartjs-tooltip {
+    pointer-events: none !important;
+    z-index: 2000;
+}
+/* === SOFT GLOW + SINGLE COLOR LOOK === */
+#allocationChart {
+  filter: drop-shadow(0px 0px 8px rgba(99, 102, 241, 0.35)) !important;
+}
+
+#allocationChart:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0px 0px 12px rgba(99, 102, 241, 0.55)) !important;
+}
+/* ===== FINAL LAYOUT ADJUSTMENT (REQUESTED) ===== */
+
+/* Increase height of pie-chart card */
+section.card:has(#allocationChart) {
+    min-height: 480px !important; /* Was smaller before */
+    padding-bottom: 30px !important;
+}
+
+/* Adjust the canvas position slightly downward so it feels centered */
+#allocationChart {
+    margin-top: 18px !important;
+}
+
+/* Reduce TradingView chart box height */
+.chart-box,
+#chartContainer {
+    height: 550px !important; /* Reduce from large size */
+}
+
+/* Make TradingView canvas fit neatly */
+#chartContainer iframe {
+    height: 100% !important;
+}
+/* Smooth rounded TradingView chart edges */
+#chartContainer {
+    border-radius: 18px !important;
+    overflow: hidden !important; /* required so iframe corners clip */
+}
+
+/* Apply curve to iframe content itself */
+#chartContainer iframe {
+    border-radius: 18px !important;
+}
+#chartContainer {
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.045);
+}
+#allocationChart {
+    margin-top: -35px !important;
+    transition: margin-top 0.3s ease;
+}
+/* === Fix Allocation Card Layout (Option B) === */
+
+/* Make border thinner and softer */
+.card {
+    border-width: 0.5px !important;
+}
+
+/* Move chart upward (less padding below) */
+.allocation-wrapper {
+    margin-top: -40px !important; /* pull chart up */
+    margin-bottom: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reduce spacing under subtitle */
+.card-header h2 + .card-subtitle {
+    margin-bottom: -5px !important;
+}
+
+/* Increase spacing between legend and chart for clarity */
+#allocationChart {
+    margin-top: 15px !important;
+    margin-bottom: 5px !important;
+}
+/* === Fix Allocation Chart Vertical Spacing === */
+
+/* Move card title upward */
+.card-header h2 {
+    margin-top: -10px !important;
+}
+
+/* Reduce space below subtitle */
+.card-header .card-subtitle {
+    margin-top: -6px !important;
+}
+
+/* Pull pie chart upwards */
+.allocation-wrapper {
+    margin-top: -px !important; /* adjust higher or lower if needed */
+    padding-bottom: 10px !important;
+}
+
+/* Ensure chart stays centered and not clipped */
+#allocationChart {
+    margin-top: 18px !important;
+    margin-bottom: 2px !important;
+    display: block;
+}
+
+/* Make card border thin & soft */
+.card {
+    border-width: 0.6px !important;
+    border-color: rgba(255,255,255,0.12) !important;
+}
+/* === FIX: Increase spacing between heading and sub-heading === */
+
+.card-header h2 {
+    margin-bottom: 10px !important;  /* was too small */
+}
+
+.card-header .card-subtitle {
+    margin-top: 6px !important;  /* add breathing space */
+}
+/* Move Allocation Heading + Subtitle Up */
+section.card:has(#allocationChart) .card-header {
+    margin-top: -50px !important; /* adjust higher if needed */
+}
+.risk-meter-wrapper {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.risk-meter {
+  width: 100%;
+  max-width: 260px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  overflow: hidden;
+}
+
+.risk-meter .fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: inherit;
+}
+
+/* colors by risk */
+.risk-meter .fill.low {
+  background: #22c55e;
+}
+.risk-meter .fill.moderate {
+  background: #eab308;
+}
+.risk-meter .fill.high {
+  background: #ef4444;
+}
+
+.risk-meter-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* alert banner */
+.risk-alert {
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid transparent;
+}
+
+.risk-alert.low {
+  border-color: rgba(34, 197, 94, 0.5);
+  color: #bbf7d0;
+}
+
+.risk-alert.moderate {
+  border-color: rgba(234, 179, 8, 0.5);
+  color: #fef3c7;
+}
+
+.risk-alert.high {
+  border-color: rgba(239, 68, 68, 0.7);
+  color: #fee2e2;
+}
+/* ⭐ RISK ENGINE UI */
+.risk-meter-wrapper {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.risk-meter {
+  width: 100%;
+  max-width: 260px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  overflow: hidden;
+}
+
+.risk-meter .fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease;
+  border-radius: inherit;
+}
+
+.risk-meter .fill.low { background: #22c55e; }
+.risk-meter .fill.moderate { background: #eab308; }
+.risk-meter .fill.high { background: #ef4444; }
+
+.risk-meter-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.risk-alert {
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid transparent;
+}
+
+.risk-alert.low { border-color: rgba(34,197,94,.5); color:#bbf7d0; }
+.risk-alert.moderate { border-color: rgba(234,179,8,.5); color:#fef3c7; }
+.risk-alert.high { border-color: rgba(239,68,68,.7); color:#fee2e2; }
+/* === Toasts === */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  min-width: 240px;
+  max-width: 320px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  font-size: 12px;
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast.hide {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.toast-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.toast-msg {
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.toast-time {
+  font-size: 11px;
+  color: rgba(148, 163, 184, 0.85);
+}
+
+.toast-success {
+  border-color: rgba(34, 197, 94, 0.5);
+}
+.toast-danger {
+  border-color: rgba(239, 68, 68, 0.7);
+}
+
+/* === Notification Center === */
+.notif-wrapper {
+  position: relative;
+}
+
+.notif-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text);
+  font-size: 13px;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.notif-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: #ef4444;
+  color: white;
+}
+
+.notif-panel {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  width: 260px;
+  max-height: 340px;
+  background: rgba(15, 23, 42, 0.98);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(18px);
+  padding: 10px 10px 8px;
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.notif-panel.open {
+  display: flex;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.notif-clear-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  max-height: 280px;
+  padding-right: 2px;
+}
+
+.notif-empty {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 10px 4px;
+}
+
+.notif-item {
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 6px 8px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.notif-item.notif-danger {
+  border-color: rgba(239, 68, 68, 0.7);
+}
+.notif-item.notif-success {
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.notif-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.notif-tag {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.notif-symbol {
+  font-weight: 600;
+}
+
+.notif-msg {
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.notif-ts {
+  font-size: 10px;
+  color: rgba(148, 163, 184, 0.8);
+}
+#chartContainer {
+  width: 1;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chart-info-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+
+.chart-info-box span {
+  transition: 0.3s ease;
+}
+.summary-output {
+  background: #1f1f2e;
+  padding: 20px;
+  border-radius: 10px;
+  color: #e5e5e5;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-menu {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  width: 260px;
+  background: #151a2d;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0px 8px 30px rgba(0,0,0,0.25);
+  z-index: 999;
+  opacity: 1;
+  transition: 0.2s ease;
+}
+
+.profile-menu.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
+.profile-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.profile-details .avatar.large {
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.menu-item.logout {
+  color: #ff6b6b;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #0d0f16;
+    padding: 20px 0;
+    z-index: 1000;
+}
+
+.sidebar-title {
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    padding: 14px 25px;
+    color: #d3d4e0;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: 0.2s;
+}
+
+.menu-item:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* PROFILE BUTTON */
+.sidebar-profile {
+    position: absolute;
+    bottom: 30px;
+    left: 25px;
+    cursor: pointer;
+}
+
+.profile-avatar {
+    width: 48px;
+    height: 48px;
+    background: #6C63FF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+}
+
+/* PROFILE BUTTON AT BOTTOM */
+.sidebar-profile {
+  position: fixed;
+  bottom: 20px;
+  left: 18px;
+  z-index: 50;
+}
+
+/* AVATAR */
+.sidebar-profile .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #6c63ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* DROPDOWN – FLOATING */
+.profile-dropdown {
+  position: absolute;
+  bottom: 60px;            /* OPENS UPWARDS */
+  left: 0;
+  width: 260px;
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(18px);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  display: none;
+  z-index: 9999;           /* ABOVE EVERYTHING */
+}
+
+/* SHOW */
+.profile-dropdown.open {
+  display: block;
+}
+
+/* HEADER */
+.profile-header {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 10px;
+}
+
+.profile-header .avatar.big {
+  width: 46px;
+  height: 46px;
+  font-size: 18px;
+}
+
+/* MENU ITEMS */
+.menu-item {
+  padding: 10px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+.menu-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.menu-item.logout {
+  color: #ff6b6b;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 10px 0;
+}
+/* ===== REMOVE TOP HEADER CONTROLS ===== */
+
+/* Search bar */
+input[placeholder*="Search"],
+input[placeholder*="ticker"],
+input[placeholder*="Search tickers"] {
+  display: none !important;
+}
+
+/* Theme toggle (moon / sun switch) */
+button:has(svg),
+.theme-toggle,
+.toggle,
+.switch {
+  display: none !important;
+}
+
+/* Settings button */
+button:has(span):has(svg),
+button[aria-label="Settings"] {
+  display: none !important;
+}
+
+/* Notification bell + badge */
+.notification,
+.bell,
+.badge,
+button:has(.badge) {
+  display: none !important;
+}
+
+/* If they are wrapped together */
+.header-right,
+.top-actions,
+.nav-actions {
+  display: none !important;
+}
+/* ===== SIDEBAR SPACING POLISH ===== */
+
+/* Increase sidebar width */
+.sidebar {
+  width: 240px !important;   /* was likely ~200 */
+  padding-top: 18px;
+}
+
+/* Space out each nav item */
+.sidebar a,
+.sidebar .nav-item,
+.sidebar li {
+  margin-bottom: 12px;
+}
+
+/* Bigger clickable area */
+.sidebar a {
+  padding: 12px 18px !important;
+  border-radius: 14px;
+}
+
+/* Icon ↔ text spacing */
+.sidebar a i,
+.sidebar a svg {
+  margin-right: 14px !important;
+}
+
+/* Slightly larger text for comfort */
+.sidebar a span,
+.sidebar a {
+  font-size: 14.5px;
+  letter-spacing: 0.2px;
+}
+
+/* Active item looks less cramped */
+.sidebar .active,
+.sidebar a.active {
+  padding: 14px 18px !important;
+}
+
+/* Bottom profile button spacing */
+.sidebar .profile-wrapper {
+  margin-top: 20px;
+}
+/* ===== SIDEBAR HORIZONTAL BREATHING SPACE ===== */
+
+/* Add space between sidebar and screen edges */
+.sidebar {
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+}
+
+/* Ensure items don’t stick to the edge */
+.sidebar a,
+.sidebar .nav-item {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+/* ===== SIDEBAR PROFILE DROPDOWN (UPWARDS) ===== */
+
+.sidebar-profile {
+  position: fixed;
+  bottom: 20px;
+  left: 18px;
+  z-index: 9999;
+}
+
+/* profile button */
+.sidebar-profile-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #6c6cff;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 600;
+}
+
+.avatar.large {
+  width: 44px;
+  height: 44px;
+}
+
+/* dropdown */
+.sidebar-profile-dropdown {
+  position: absolute;
+  bottom: 56px; /* OPENS UPWARDS */
+  left: 0;
+  width: 260px;
+  background: rgba(18,18,18,0.96);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+/* visible */
+.sidebar-profile-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* header */
+.profile-header {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.email {
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* items */
+.dropdown-item {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #ddd;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 8px 0;
+}
+
+/* theme toggle */
+.theme-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* switch */
+.switch {
+  width: 34px;
+  height: 18px;
+  position: relative;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #444;
+  border-radius: 20px;
+}
+
+.slider::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
+.switch input:checked + .slider {
+  background: #6c6cff;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(16px);
+}
+
+.logout {
+  color: #ff6b6b;
+}
+/* ===== UPWARD PROFILE DROPDOWN FIX ===== */
+
+.profile-dropdown-up {
+  position: fixed;
+  bottom: 80px;              /* opens UP */
+  left: 22px;                /* aligns with sidebar */
+  width: 260px;
+  background: rgba(18,18,18,0.96);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+  transition: 0.2s ease;
+  z-index: 9999;
+}
+
+.profile-dropdown-up.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* reuse existing styles safely */
+.profile-dropdown-up .profile-header {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+}
+
+.profile-dropdown-up .dropdown-item {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #ddd;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-dropdown-up .dropdown-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.profile-dropdown-up .dropdown-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 8px 0;
+}
+
+.profile-dropdown-up .logout {
+  color: #ff6b6b;
+}
+/* ===== CARD VIEW MODE ===== */
+
+table.card-view thead {
+  display: none;
+}
+
+table.card-view tbody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+table.card-view tr {
+  display: block;
+  background: rgba(255,255,255,0.03);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+table.card-view td {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border: none;
+}
+
+table.card-view td::before {
+  content: attr(data-label);
+  color: #888;
+  font-size: 12px;
+}
+/* ===== REMOVE SWITCH TO CARD VIEW BUTTON ===== */
+
+button,
+.btn {
+  &[innerText="Switch to Card View"] {
+    display: none !important;
+  }
+}
+
+/* Fallback if it has a wrapper */
+.switch-card-view,
+.card-view-toggle {
+  display: none !important;
+}
+/* Tighten spacing after removing button */
+.your-portfolio-header {
+  padding-bottom: 8px;
+}
+/* Remove floating profile avatar (A icon) */
+.profile-avatar,
+.user-avatar,
+.avatar,
+.floating-avatar,
+.bottom-avatar {
+  display: none !important;
+}
