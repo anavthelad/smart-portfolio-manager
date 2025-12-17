@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart Portfolio Manager – Dashboard</title>
 
-  <!-- ✅ CORRECT CSS PATH -->
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 
-  <!-- TradingView -->
   <script src="https://s3.tradingview.com/tv.js"></script>
 
-  <!-- Highcharts -->
+  <!-- HIGHCHARTS -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 </head>
@@ -19,7 +17,8 @@
 <body>
 <div class="app-layout">
 
-  <!-- ================= SIDEBAR ================= -->
+  <!-- SIDEBAR -->
+   
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-mark">SP</div>
@@ -27,78 +26,140 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a href="/" class="nav-link active">
+      <a href="index.html" class="nav-link active">
         <span class="nav-icon">🏠</span>
         <span class="nav-label">Dashboard</span>
       </a>
-
-      <a href="/tasks.html" class="nav-link">
+      <a href="tasks.html" class="nav-link">
         <span class="nav-icon">🗂</span>
         <span class="nav-label">Tasks</span>
       </a>
-
-      <a href="/messages.html" class="nav-link">
+      <a href="messages.html" class="nav-link">
         <span class="nav-icon">💬</span>
         <span class="nav-label">Messages</span>
       </a>
-
-      <a href="/activity.html" class="nav-link">
+      <a href="activity.html" class="nav-link">
         <span class="nav-icon">📈</span>
         <span class="nav-label">Activity</span>
       </a>
-
-      <a href="/calendar.html" class="nav-link">
+      <a href="calendar.html" class="nav-link">
         <span class="nav-icon">📅</span>
         <span class="nav-label">Calendar</span>
       </a>
-
-      <a href="/portfolio.html" class="nav-link">
+      <a href="portfolio.html" class="nav-link">
         <span class="nav-icon">📊</span>
         <span class="nav-label">Portfolio</span>
       </a>
+      <!-- SIDEBAR PROFILE BUTTON -->
+<div class="sidebar-profile">
+  <div class="avatar" id="profileToggle">A</div>
 
-      <a href="/summarizer.html" class="nav-link">
+  <!-- DROPDOWN (FLOATING) -->
+  <div class="profile-dropdown" id="profileDropdown">
+    <div class="profile-header">
+      <div class="avatar big">A</div>
+      <div>
+        <div class="name">Abhinav</div>
+        <div class="email">user@mail.com</div>
+      </div>
+    </div>
+
+    <div class="menu-item">Account</div>
+    <div class="menu-item">Edit Profile</div>
+    <div class="menu-item">Privacy</div>
+    <div class="menu-item">Settings</div>
+    <div class="menu-item">Help & Support</div>
+    <div class="menu-item">Notification</div>
+
+    <div class="divider"></div>
+
+    <div class="menu-item theme-row">
+      Theme
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="menu-item logout">Logout</div>
+  </div>
+</div>
+
+      <!-- ⭐ NEW SUMMARIZER PAGE -->
+      <a href="summarizer.html" class="nav-link">
         <span class="nav-icon">📄</span>
         <span class="nav-label">Summarizer</span>
       </a>
-    </nav>
+      <!-- Profile Button (Bottom of Sidebar) -->
+<div class="sidebar-profile" onclick="toggleProfileMenu()">
+    <div class="profile-avatar">A</div>
+</div>
 
-    <!-- ===== PROFILE (SINGLE, CLEAN) ===== -->
-    <div class="sidebar-profile" id="profileToggle">
-      <div class="avatar">A</div>
-    </div>
-
-    <div class="profile-dropdown" id="profileDropdown">
-      <div class="profile-header">
-        <div class="avatar big">A</div>
+<!-- Floating Upward Dropdown -->
+<div class="profile-popup" id="profilePopup">
+    <div class="popup-header">
+        <div class="popup-avatar"></div>
         <div>
-          <div class="name">Abhinav</div>
-          <div class="email">user@mail.com</div>
         </div>
-      </div>
-
-      <div class="menu-item">Account</div>
-      <div class="menu-item">Edit Profile</div>
-      <div class="menu-item">Settings</div>
-
-      <div class="divider"></div>
-
-      <div class="menu-item logout">Logout</div>
     </div>
+
+ <div class="popup-divider"></div>
+    <div class="popup-divider"></div>
+
+    <div class="popup-item logout"><i class="fas fa-sign-out-alt"></i> </div>
+</div>
+
+    </nav>
   </aside>
 
-  <!-- ================= MAIN ================= -->
+  <!-- MAIN -->
   <main class="main">
     <div class="container">
 
-      <!-- ===== HEADER ===== -->
+      <!-- TOP BAR -->
       <header class="header">
-        <div class="search-box">
-          🔍 <input type="text" placeholder="Search tickers..." />
+        <div class="header-left">
+        </div>
+
+        <div class="header-right">
+          <div class="search-box">
+            <span>🔍</span>
+            <input type="text" placeholder="Search tickers..." />
+          </div>
+
+          <div class="theme-toggle">
+            🌙
+            <label class="switch">
+              <input type="checkbox" id="themeSwitch" />
+              <span class="slider"></span>
+            </label>
+            ☀️
+          </div>
+
+          <button id="settingsBtn" class="settings-chip">⚙ Settings</button>
+
+          <!-- 🔔 NOTIFICATION SYSTEM -->
+          <div class="notif-wrapper">
+            <button id="notifBtn" class="notif-btn">
+               <span id="notifCount" class="notif-count">0</span>
+            </button>
+            <div id="notifPanel" class="notif-panel">
+              <div class="notif-header">
+                <span></span>
+                <button id="clearNotifBtn" class="notif-clear-btn">Clear</button>
+              </div>
+              <div id="notifList" class="notif-list"></div>
+            </div>
+          </div>
         </div>
       </header>
 
-      <!-- ===== ADD ASSET ===== -->
+      <div id="loader" class="loader"></div>
+
+
+      <!-- 1. ADD ASSET -->
       <section class="card">
         <div class="card-header">
           <h2>Add Asset</h2>
@@ -122,7 +183,8 @@
         </div>
       </section>
 
-      <!-- ===== RISK OVERVIEW ===== -->
+
+      <!-- 2. RISK OVERVIEW -->
       <section class="card">
         <div class="card-header">
           <h2>Risk Overview</h2>
@@ -138,37 +200,57 @@
           <span>Risk Score <b id="riskScore">0 / 3</b></span>
         </div>
 
-        <div id="riskAlert" class="risk-alert">
-          Add assets to see risk analysis.
+        <div class="risk-meter-wrapper">
+          <div class="risk-meter"><div id="riskMeterFill" class="fill"></div></div>
+          <div id="riskMeterLabel" class="risk-meter-label">Overall Risk: No Data</div>
         </div>
+
+        <div id="riskAlert" class="risk-alert">Add assets to see risk analysis.</div>
       </section>
 
-      <!-- ===== ALLOCATION CHART ===== -->
+
+      <!-- 3. ALLOCATION CHART -->
       <section class="card">
         <div class="card-header">
           <h2>Allocation by Value</h2>
+          <span class="card-subtitle">Your capital split by asset.</span>
         </div>
-        <div id="allocationChart3D" style="width:100%; height:420px;"></div>
+
+        <div id="chartInfo" class="chart-info-box">
+          <span id="chartSymbol"></span>
+          <span id="chartPL"></span>
+        </div>
+
+        <div id="allocationChart3D" style="width:100%; height:480px;"></div>
       </section>
 
-      <!-- ===== LIVE CHART ===== -->
+
+      <!-- 4. LIVE CHART -->
       <section class="card">
         <div class="card-header">
           <h2>Live Candlestick Chart</h2>
+          <span class="card-subtitle">Click a symbol to load its chart.</span>
         </div>
+
         <div id="chartContainer" class="chart-box">
-          Select an asset to view chart.
+          <div class="chart-placeholder">Select any asset from your portfolio to view its chart.</div>
         </div>
       </section>
 
-      <!-- ===== PORTFOLIO TABLE ===== -->
-      <section class="card">
-        <div class="card-header">
-          <h2>Your Portfolio</h2>
+
+      <!-- 5. PORTFOLIO TABLE -->
+      <section class="card portfolio-card">
+        <div class="card-header row space-between">
+          <div>
+            <h2>Your Portfolio</h2>
+            <span class="card-subtitle">Track all positions in one place.</span>
+          </div>
+          <button id="viewToggle" class="secondary-btn">Switch to Card View</button>
         </div>
 
-        <table>
-          <thead>
+        <div id="tableView">
+          <table>
+            <thead>
             <tr>
               <th>Asset</th>
               <th>Qty</th>
@@ -177,26 +259,84 @@
               <th>Value</th>
               <th>P/L</th>
               <th>Risk</th>
+              <th>SL | TP</th>
             </tr>
-          </thead>
-          <tbody id="portfolioTable"></tbody>
-        </table>
-      </section>
+            </thead>
+            <tbody id="portfolioTable"></tbody>
+          </table>
+        </div>
 
+        <div id="portfolioView" class="cards-view" style="display:none;"></div>
+      </section>
     </div>
   </main>
 </div>
 
-<!-- ✅ ONLY ONE JS FILE (CORRECT PATH) -->
-<script src="/app.js"></script>
+
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+<script src="js/firebase.js"></script>
 
 <script>
-  // Profile dropdown toggle
-  const toggle = document.getElementById("profileToggle");
-  const dropdown = document.getElementById("profileDropdown");
-
-  toggle.onclick = () => dropdown.classList.toggle("show");
+  if (typeof auth !== "undefined") {
+    auth.onAuthStateChanged(user => {
+      if (!user) window.location.href = "login.html";
+    });
+  }
 </script>
 
 </body>
 </html>
+<!-- UPWARD PROFILE DROPDOWN -->
+<div id="profileDropdownUp" class="profile-dropdown-up">
+  <div class="profile-header">
+    <div class="avatar large">A</div>
+    <div>
+      <div class="name">Abhinav</div>
+      <div class="email">user@gmail.com</div>
+    </div>
+  </div>
+
+  <button class="dropdown-item">Account</button>
+  <button class="dropdown-item">Edit Profile</button>
+  <button class="dropdown-item">Privacy</button>
+  <button class="dropdown-item">Settings</button>
+  <button class="dropdown-item">Help & Support</button>
+  <button class="dropdown-item">Notification</button>
+
+  <div class="dropdown-divider"></div>
+
+  <div class="dropdown-item theme-toggle">
+    <span>Theme</span>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="dropdown-divider"></div>
+
+  <button class="dropdown-item logout">Logout</button>
+</div>
+<script>
+  const switchBtn = document.querySelector("button");
+  const table = document.querySelector("table");
+
+  let cardView = false;
+
+  switchBtn.addEventListener("click", () => {
+    cardView = !cardView;
+
+    if (cardView) {
+      table.classList.add("card-view");
+      switchBtn.innerText = "Switch to Table View";
+    } else {
+      table.classList.remove("card-view");
+      switchBtn.innerText = "Switch to Card View";
+    }
+  });
+</script>
